@@ -1,30 +1,108 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using DotNetFramework.Core;
+using DotNetFramework.Service.UserServices;
+using DotNetFrameWork.Data;
+using DotNetFrameworkWebApp.Models;
+using System;
 using System.Web.Mvc;
 
 namespace DotNetFrameworkWebApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        public ActionResult Index()
+        private readonly IUserService userService;
+
+        public HomeController(IUserService userService)
         {
-            return View();
+            this.userService = userService;
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page Index.";
 
-            return View();
+        #region [ SIGNUP ]
+            [HttpGet]
+        public ActionResult Register()
+        {
+            RegistrationViewModel model = new RegistrationViewModel();
+
+            return View("Register", model);
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Register(RegistrationViewModel model)
         {
-            ViewBag.Message = "Your contact page.";
+            try
+            {
+                if (ModelState.IsValid)
+                {
 
-            return View();
+                    User Usercreate = new User();
+                    Usercreate.UserId = Guid.NewGuid();
+                    Usercreate.FirstName = Extensions.ToPascalCase(model.FirstName);
+                    Usercreate.LastName = Extensions.ToPascalCase(model.LastName);
+                    Usercreate.Email = model.Email;
+                    var saltKey = PasswordEncryption.CreateSaltKey(5);
+                    var encryptedPassword = PasswordEncryptHelper.base64Encode(model.Password);
+                    Usercreate.Password = encryptedPassword;
+                    Usercreate.SaltKey = saltKey;
+                    Usercreate.IsVerified = false;
+                    Usercreate.IsActive = false;
+                    Usercreate.CreatedOn = DateTime.Now;
+                    Usercreate.UpdatedOn = DateTime.Now;
+                    userService.Saveuser(Usercreate);
+                    return NewtonSoftJsonResult(new RequestOutcome<string> { RedirectUrl = @Url.Action("Register", "Account"), Message = "Registration has been successfully. We have sent a verification link to registered email. Please verify to login." });
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return NewtonSoftJsonResult(new RequestOutcome<string> { ErrorMessage = ex.ToString() });
+            }
+            return CreateModelStateErrors();
         }
+        #endregion [ SIGNUP ]
+
+        #region [ SIGNIN ]
+        public ActionResult SignIn()
+        {
+
+            RegistrationViewModel model = new RegistrationViewModel();
+            
+            return View(model);
+        }
+
+        
+        [HttpPost]
+        public ActionResult LoginUser(RegistrationViewModel model)
+        {
+            var password = PasswordEncryptHelper.base64Encode(model.Password);
+            bool check = userService.GetUser(model.Email, password);            
+            if (check == true)
+            {
+                return RedirectToAction("Index", "JobDetails");
+
+            }
+            else
+            {
+                ShowErrorMessage("Error", String.Format("Email or Password are incorrect"), false);
+                return RedirectToAction("Index");
+            }
+              
+        }
+
+        #endregion [ SIGNIN ]
+
+
+        #region [LOGOUT]
+        public ActionResult Logout()
+        {
+
+            RemoveAuthentication();
+
+            return RedirectToAction("SignIn", "Home");
+
+        }
+        #endregion [ LOGOUT ]
+
+
     }
 }
