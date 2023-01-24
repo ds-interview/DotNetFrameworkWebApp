@@ -15,7 +15,7 @@ namespace DotNetFrameworkWebApp.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your application description page Index.";
 
             return View();
         }
