@@ -1,0 +1,57 @@
+﻿@model DotNetFrameworkWebApp.Model.JobApplicationViewModel
+@using DotNetFrameworkWebApp.Models
+@*<div id="DvUpdate">*@
+
+
+<div id="frm-add-ed3it-jobapplication">
+    @using (Html.BeginForm("AddEditJobApplication", "JobApplication", null, FormMethod.Post, new { enctype = "multi part/form-data", @class = "form-horizontal", id = "formRegisterprovider", @autocomplete = "off" }))
+    {
+        @Html.Partial("_ModalHeader", new ModalHeader { Heading = String.Format("{0} JobApplication", Convert.ToInt32(@ViewContext.RouteData.Values["id"]) == 0 ? "Add" : "Edit") })
+        <div id="validation-summary"></div>
+
+        <div class="modal-body form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Job_Code, new { @class = "col-lg-4 col-sm-3 control-label" })
+                <div class="col-lg-8 col-sm-9">
+                    @Html.TextBoxFor(model => model.Job_Code, new { @class = "form-control ", maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.Job_Code, null, new { @class = "error" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, new { @class = "col-lg-4 col-sm-3 control-label" })
+                <div class="col-lg-8 col-sm-9">
+                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control ", maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.Title, null, new { @class = "error" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Minimum_Qualification, new { @class = "col-lg-4 col-sm-3 control-label" })
+                <div class="col-lg-8 col-sm-9">
+                    @Html.TextBoxFor(model => model.Minimum_Qualification, new { @class = "form-control ", maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.Minimum_Qualification, null, new { @class = "error" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sort_Description, new { @class = "col-lg-4 col-sm-3 control-label" })
+                <div class="col-lg-8 col-sm-9">
+                    @Html.TextBoxFor(model => model.Sort_Description, new { @class = "form-control ", maxlength = "100" })
+                    @Html.ValidationMessageFor(model => model.Sort_Description, null, new { @class = "error" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Application_Last_Date, new { @class = "col-lg-4 col-sm-3 control-label" })
+                <div class="col-lg-8 col-sm-9">
+                    @Html.TextBoxFor(model => model.Application_Last_Date, new { @class = "form-control ", maxlength = "100",type="date" })
+                    @Html.ValidationMessageFor(model => model.Application_Last_Date, null, new { @class = "error" })
+                </div>
+            </div>
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.IsActive, new { @class = "col-lg-4 col-sm-3   control-label" })
+                    <div class="col-lg-2 col-sm-3  ">
+                        @Html.CheckBoxFor(model => model.IsActive, new { @class = "form-control form-checkbox", data_on = "success", data_off = "danger" })
+                    </div>
+                </div>*@
+        </div>
+        @Html.Partial("_ModalFooter", new ModalFooter { })
+    }
+</div>
