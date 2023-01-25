@@ -48,8 +48,9 @@ namespace DotNetFrameworkWebApp.Controllers
                     Usercreate.CreatedOn = DateTime.Now;
                     Usercreate.UpdatedOn = DateTime.Now;
                     userService.Saveuser(Usercreate);
-                    return NewtonSoftJsonResult(new RequestOutcome<string> { RedirectUrl = @Url.Action("SignIn", "Home"), Message = "Registration has been successfully" });
-
+                    ShowSuccessMessage("Success!", "Registration is successfull. Please login with your credentials.", false);
+                    // return NewtonSoftJsonResult(new RequestOutcome<string> { RedirectUrl = @Url.Action("SignIn", "Home"), Message = "Registration has been successfully" });
+                    return RedirectToAction("SignIn");
                 }
 
             }

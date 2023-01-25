@@ -129,13 +129,13 @@ namespace DotNetFrameworkWebApp.Controllers
                     _jobDetailService.SaveJobDetails(jobDetail);
 
                 }
-
+                ShowSuccessMessage("Success!", "Job Details are added successfully", false);
                 return RedirectToAction("Index", "JobDetails");
-                //return NewtonSoftJsonResult(new RequestOutcome<dynamic> { RedirectUrl = @Url.Action("CircularIndex", "Circular") });
+                
             }
             catch (Exception ex)
             {
-                return NewtonSoftJsonResult(new RequestOutcome<dynamic> { RedirectUrl = @Url.Action("CircularIndex", "Circular") });
+                return NewtonSoftJsonResult(new RequestOutcome<dynamic> { RedirectUrl = @Url.Action("Index", "JobDetails") });
             }
 
         }
