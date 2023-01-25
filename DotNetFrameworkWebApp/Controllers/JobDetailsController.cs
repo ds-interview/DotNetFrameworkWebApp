@@ -89,7 +89,7 @@ namespace DotNetFrameworkWebApp.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult AddEditJobDetails(int id)
+        public PartialViewResult AddEditJobDetails(int id=0)
         {
             JobDetailsViewModel model = new JobDetailsViewModel();
             if (id > 0)
@@ -103,7 +103,7 @@ namespace DotNetFrameworkWebApp.Controllers
                 model.ApplicationLastDate = DateTime.Now;
              
             }
-            return PartialView(model);
+            return PartialView("_AddEditJobDetails",model);
         }
 
         [HttpPost]
@@ -130,7 +130,7 @@ namespace DotNetFrameworkWebApp.Controllers
 
                 }
 
-                return RedirectToAction("CircularIndex", "Circular");
+                return RedirectToAction("Index", "JobDetails");
                 //return NewtonSoftJsonResult(new RequestOutcome<dynamic> { RedirectUrl = @Url.Action("CircularIndex", "Circular") });
             }
             catch (Exception ex)
@@ -149,8 +149,8 @@ namespace DotNetFrameworkWebApp.Controllers
             {
                 Size = ModalSize.Medium,
                 IsHeader = true,
-                Message = "Are you sure want to delete this Student?",
-                Header = new ModalHeader { Heading = "Delete Student" },
+                Message = "Are you sure want to delete this Job Detail?",
+                Header = new ModalHeader { Heading = "Delete Job Detail" },
                 Footer = new ModalFooter { SubmitButtonText = "Yes", CancelButtonText = "No" }
             });
         }

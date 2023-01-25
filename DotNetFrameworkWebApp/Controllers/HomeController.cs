@@ -48,7 +48,7 @@ namespace DotNetFrameworkWebApp.Controllers
                     Usercreate.CreatedOn = DateTime.Now;
                     Usercreate.UpdatedOn = DateTime.Now;
                     userService.Saveuser(Usercreate);
-                    return NewtonSoftJsonResult(new RequestOutcome<string> { RedirectUrl = @Url.Action("Register", "Account"), Message = "Registration has been successfully. We have sent a verification link to registered email. Please verify to login." });
+                    return NewtonSoftJsonResult(new RequestOutcome<string> { RedirectUrl = @Url.Action("SignIn", "Home"), Message = "Registration has been successfully" });
 
                 }
 
@@ -84,7 +84,7 @@ namespace DotNetFrameworkWebApp.Controllers
             else
             {
                 ShowErrorMessage("Error", String.Format("Email or Password are incorrect"), false);
-                return RedirectToAction("Index");
+                return RedirectToAction("SignIn");
             }
               
         }

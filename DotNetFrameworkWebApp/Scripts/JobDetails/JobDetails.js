@@ -1,12 +1,12 @@
 ﻿(function ($) {
 
 
-    function JobList() {
+    function JobDetailsList() {
         var $this = this;
 
         function initializeGrid() {
 
-            var gridPresenter = new Global.GridHelper('#grid-job-management', {
+            var gridPresenter = new Global.GridHelper('#grid-jobdetails-management', {
                 "columnDefs": [
                     {
                         "targets": [0],
@@ -53,8 +53,8 @@
                         "render": function (data, type, row, meta) {
 
                             var actionLink = $("<a/>", {
-                                href: domain + "/JobDetails/AddEditJobDetails/" + row[0],
-                                id: "editPresenterModal",
+                                href: 'http://localhost:50175/' + "/JobDetails/AddEditJobDetails/" + row[0],
+                                id: "addeditPresenterModal",
                                 class: "btn btn-primary btn-sm",
                                 'data-toggle': "modal",
                                 'data-target': "#modal-add-edit-jobdetails",
@@ -65,7 +65,7 @@
 
 
                             actionLink += $("<a/>", {
-                                href: domain + "/JobDetails/DeleteJobDetails/" + row[0],
+                                href: 'http://localhost:50175/' + "/JobDetails/DeleteJobDetails/" + row[0],
                                 id: "deletePresenter",
                                 class: "btn btn-danger btn-sm",
                                 'data-toggle': "modal",
@@ -87,7 +87,7 @@
                 "bServerSide": true,
                 "bAutoWidth": false,
                 "stateSave": false,
-                "sAjaxSource": domain + "JobDetails/Index",   //some changes here //
+                "sAjaxSource": 'http://localhost:50175/' + "JobDetails/Index",   //some changes here //
 
                 "fnServerData": function (url, data, callback) {
 
@@ -129,7 +129,7 @@
             });
             table = gridPresenter.DataTable();
 
-            $('.dataTables_filter input').attr("placeholder", "Press and type Enter");  ///code for filter serch placeholder
+            $('.dataTables_filter input').attr("placeholder", "Press and type enter ");  ///code for filter serch placeholder
 
         }
 
@@ -146,7 +146,7 @@
                 .on('switchChange.bootstrapSwitch', function () {
                     var switchElement = this;
 
-                    $.post(domain + 'Admin/Brand/UpdateStatus', { brandId: this.value },
+                    $.post('http://localhost:50175/' + 'Admin/Brand/UpdateStatus', { brandId: this.value },
                         function (result) {
                             alertify.dismissAll();
                             alertify.success(result.message)
@@ -164,9 +164,7 @@
 
             $("#modal-add-edit-jobdetails").on('loaded.bs.modal', function (e) {
 
-                $attendanceValue = [];
-                $('.form-checkbox').bootstrapSwitch();
-                formAddEditDepartment = new Global.FormHelper($("#modal-add-edit-jobdetails"), { updateTargetId: "validation-summary" }, function (data) {
+                formAddEditJobDetails = new Global.FormHelper($("#modal-add-edit-jobdetails"), { updateTargetId: "validation-summary" }, function (data) {
 
                     console.log(data.isSuccess); //Here
                     if (data.isSuccess == true) {
@@ -200,7 +198,7 @@
 
             $("#modal-delete-jobdetails").on('loaded.bs.modal', function (e) {
 
-                formDeleteJobTitle = new Global.FormHelper($('#frm-add-edit-jobdetails'), { updateTargetId: "validation-summary" }, function (data) {
+                formDeleteJobTitle = new Global.FormHelper($('#frm-delete-jobdetails'), { updateTargetId: "validation-summary" }, function (data) {
                     if (data.isSuccess) {
                         // alert(data.data);
                         window.location.reload();
@@ -226,7 +224,7 @@
 
 
     $(function () {
-        var self = new JobList();
+        var self = new JobDetailsList();
         self.init();
     });
 

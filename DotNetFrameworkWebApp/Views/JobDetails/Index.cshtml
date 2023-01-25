@@ -1,6 +1,10 @@
 ﻿@using DotNetFrameworkWebApp.Models.Comman
 @using DotNetFrameworkWebApp.Code.Serialization
 
+@{
+    ViewBag.Title = "Index";
+}
+
 <style>
 
     .panel-heading {
@@ -16,27 +20,22 @@
         }
 </style>
 <div class="box">
- 
-
+    @Html.Partial("_MessageNotification")
     <div class="box-body">
         <div class="row">
             <div class="col-xs-12">
 
                 <div class="panel-group" id="accordion">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Job Detail Manager</a>
-                        </h4>
-                    </div>
+
 
                     <div class="btn-group" style="margin-top:20px;">
-                        <a id="addEditdepartmentmodal" data-toggle="modal" href="@Url.Action("AddEditJobDetails","JobDetails")" data-target="#modal-add-edit-jobdetails" class="btn btn-primary">
+                        <a id="addeditPresenterModal" data-toggle="modal" href="@Url.Action("AddEditJobDetails","JobDetails")" data-target="#modal-add-edit-jobdetails" class="btn btn-primary">
                             <i class="fa fa-plus"></i>Add Job Details
                         </a>
                     </div>
                     <div id="collapse1" class="panel-collapse collapse in">
                         <div class="box-body table-responsive">
-                            <table id="grid-job-management" class="table table-bordered table-striped table-condensed">
+                            <table id="grid-jobdetails-management" class="table table-bordered table-striped table-condensed">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -46,7 +45,6 @@
                                         <th>Job Description</th>
                                         <th>Application Last Date</th>
                                         <th style=" width: 150px;">Action</th>
-
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -70,12 +68,16 @@
 
 @Html.Partial("_Modal", new Modal { ID = "modal-add-edit-jobdetails", AreaLabeledId = "modal-add-edit-jobdetails-label", Size = ModalSize.Large })
 @Html.Partial("_Modal", new Modal { ID = "modal-delete-jobdetails", AreaLabeledId = "modal-delete-jobdetails-label", Size = ModalSize.Large })
-
 @section scripts
 {
-
-
-
-    <link href="~/Content/css/bootstrap-switch.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/global.js"></script>
     <script src="~/Scripts/JobDetails/JobDetails.js"></script>
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.js"></script>
 }
+
+
+
+
+

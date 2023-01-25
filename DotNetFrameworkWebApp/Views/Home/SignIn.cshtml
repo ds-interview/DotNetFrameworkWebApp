@@ -4,7 +4,7 @@
     ViewBag.Title = "SignIn";
 }
 
-<h2>SignIn</h2>
+<h2>LOG IN</h2>
 
 
 @using (Html.BeginForm("LoginUser", "Home", null, FormMethod.Post, new { enctype = "multi part/form-data", @class = "form-horizontal", id = "formRegisterprovider", @autocomplete = "off" })) 
@@ -19,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control",@placeholder = "example@example.com" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control",@placeholder = "*****",@type = "password" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
