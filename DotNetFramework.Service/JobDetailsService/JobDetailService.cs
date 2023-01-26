@@ -31,7 +31,16 @@ namespace DotNetFramework.Service.JobDetailsService
         }
         public JobDetail SaveJobDetails(JobDetail jobDetail)
         {
-            _jobdetailRepo.Insert(jobDetail);
+            if(jobDetail.JobCode != 0)
+            {
+                _jobdetailRepo.Update(jobDetail);
+            }
+            else
+            {
+                _jobdetailRepo.Insert(jobDetail);
+
+            }
+            
             return jobDetail;
         }
         public JobDetail FindById(int id)

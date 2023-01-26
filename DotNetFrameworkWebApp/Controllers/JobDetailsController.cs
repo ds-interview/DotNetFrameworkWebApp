@@ -130,12 +130,12 @@ namespace DotNetFrameworkWebApp.Controllers
 
                 }
                 ShowSuccessMessage("Success!", "Job Details are added successfully", false);
-                return RedirectToAction("Index", "JobDetails");
+                return RedirectToAction("Index");
                 
             }
             catch (Exception ex)
             {
-                return NewtonSoftJsonResult(new RequestOutcome<dynamic> { RedirectUrl = @Url.Action("Index", "JobDetails") });
+                return NewtonSoftJsonResult(new RequestOutcome<dynamic> { RedirectUrl = @Url.Action("Index") });
             }
 
         }
@@ -163,12 +163,12 @@ namespace DotNetFrameworkWebApp.Controllers
                 int get = _jobDetailService.DeleteStudentPresenter(id);
                 if (get == id)
                 {
-                    ShowSuccessMessage("Success", "Student is successfully deleted", false);
-                    return NewtonSoftJsonResult(new RequestOutcome<string> { Data = "Data Deleted" });
+                    ShowSuccessMessage("Success", "Job Details are successfully deleted", false);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    return NewtonSoftJsonResult(new RequestOutcome<string> { Data = "Error Occourd" });
+                    return RedirectToAction("Index");
                 }
 
             }

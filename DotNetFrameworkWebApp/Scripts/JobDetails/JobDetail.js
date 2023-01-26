@@ -1,23 +1,49 @@
 ﻿(function ($) {
 
-
     function JobDetailsList() {
         var $this = this;
 
-        function initializeGrid() {
+        function initializeModalWithForm() {
 
-            var gridPresenter = new Global.GridHelper('#grid-jobdetails-management', {
+            $("#modal-add-edit-jobdetails").on('loaded.bs.modal', function (e) {
+                formAddEditJobDetails = new Global.FormHelper($(this).find("form"),
+                    { updateTargetId: "validation-summary" }, function onSuccess(result) {
+                        if (result.errorMessage) {
+                            alertify.error(result.errorMessage)
+                        }
+                        else {
+                            window.location.href = result.redirectUrl;
+                        }
+                    });
+                $('.form-checkbox').bootstrapSwitch();
+
+
+            }).on('hidden.bs.modal', function (e) {
+                $(this).removeData('bs.modal');
+            });
+
+
+        }
+
+
+        function initializeGrid() {
+            if ($.fn.DataTable.isDataTable($this.gridJobDetails)) {
+                $($this.gridJobDetails).DataTable().destroy();
+            }
+            $this.gridJobDetails = new Global.GridHelper('#grid-jobdetails-management', {
                 "columnDefs": [
                     {
                         "targets": [0],
                         "visible": false,
-                        "searchable": false
+                        "sortable": false,
+                        "orderable": false,
                     },
                     {
                         "targets": [1],
                         "visible": true,
-                        "sortable": true,
+                        "sortable": false,
                         "searchable": true
+
                     },
                     {
                         "targets": [2],
@@ -28,41 +54,43 @@
                     {
                         "targets": [3],
                         "visible": true,
-                        "sortable": false,
-                        "searchable": false
+                        "sortable": true,
+                        "searchable": true
                     },
                     {
                         "targets": [4],
                         "visible": true,
-                        "sortable": false,
-                        "searchable": false
+                        "sortable": true,
+                        "searchable": true
                     },
+
                     {
                         "targets": [5],
                         "visible": true,
-                        "sortable": false,
-                        "searchable": false
+                        "sortable": true,
+                        "searchable": true
                     },
-                    
                     {
-
                         "targets": 6,
+                        "data": "0",
+                        "visible": true,
                         "searchable": false,
                         "sortable": false,
-                        "data": "0",
                         "render": function (data, type, row, meta) {
-
-                            var actionLink = $("<a/>", {
+                            var actionLink = ''
+                            actionLink = $("<a/>", {
                                 href: 'http://localhost:50175/' + "/JobDetails/AddEditJobDetails/" + row[0],
+
                                 id: "addeditPresenterModal",
                                 class: "btn btn-primary btn-sm",
+                                'title': "Edit",
                                 'data-toggle': "modal",
+                                'data-backdrop': "static",
                                 'data-target': "#modal-add-edit-jobdetails",
                                 html: $("<i/>", {
                                     class: "fa fa-pencil"
                                 }),
-                            }).append(" Edit").get(0).outerHTML + "&nbsp;"
-
+                            }).append(" Edit").get(0).outerHTML + "&nbsp";
 
                             actionLink += $("<a/>", {
                                 href: 'http://localhost:50175/' + "/JobDetails/DeleteJobDetails/" + row[0],
@@ -75,22 +103,20 @@
                                 }),
                             }).append(" Delete").get(0).outerHTML + "&nbsp;"
 
-
                             return actionLink;
                         }
-                    }
+                    },
+
                 ],
                 "direction": "rtl",
                 "bPaginate": true,
-                "sPaginationType": "simple_numbers",
+                "sPaginationType": "full_numbers",
                 "bProcessing": true,
                 "bServerSide": true,
                 "bAutoWidth": false,
                 "stateSave": false,
-                "sAjaxSource": 'http://localhost:50175/' + "JobDetails/Index",   //some changes here //
-
+                "sAjaxSource": 'http://localhost:50175/' + "JobDetails/Index",
                 "fnServerData": function (url, data, callback) {
-
                     $.ajax({
                         "url": url,
                         "data": data,
@@ -103,23 +129,19 @@
 
                         }
                     });
-
-
                 },
-
-
                 "fnDrawCallback": function (oSettings) {
                     initGridControlsWithEvents();
-
 
                     if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
                         $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
                     }
                     else {
                         $(oSettings.nTableWrapper).find('.dataTables_paginate').show();
+                        window.scrollTo(0, 0);
                     }
                 },
-                "stateSave": true,
+
                 "stateSaveCallback": function (settings, data) {
                     localStorage.setItem('DataTables_' + settings.sInstance, JSON.stringify(data))
                 },
@@ -127,107 +149,31 @@
                     return JSON.parse(localStorage.getItem('DataTables_' + settings.sInstance))
                 }
             });
-            table = gridPresenter.DataTable();
-
-            $('.dataTables_filter input').attr("placeholder", "Press and type enter ");  ///code for filter serch placeholder
-
+            table = $this.gridJobDetails.DataTable();
+            $('.dataTable').on('draw.dt', function () {
+                bindEnterEventInDataTableJSGrid(true);
+            });
         }
 
-
-
-
-        //function initGridControlsWithEvents() {
-        //    if ($('.switchBox').data('bootstrapSwitch')) {
-        //        $('.switchBox').off('switchChange.bootstrapSwitch');
-        //        $('.switchBox').bootstrapSwitch('destroy');
-        //    }
-
-        //    $('.switchBox').bootstrapSwitch()
-        //        .on('switchChange.bootstrapSwitch', function () {
-        //            var switchElement = this;
-
-        //            $.post('http://localhost:50175/' + 'Admin/Brand/UpdateStatus', { brandId: this.value },
-        //                function (result) {
-        //                    alertify.dismissAll();
-        //                    alertify.success(result.message)
-        //                })
-        //        });
-        //}
-
-        ///chh
-
-        function initializeModalWithForm() {
-
-
-            //Add And Edit Circular
-
-
-            $("#modal-add-edit-jobdetails").on('loaded.bs.modal', function (e) {
-
-                formAddEditJobDetails = new Global.FormHelper($("#modal-add-edit-jobdetails"), { updateTargetId: "validation-summary" }, function (data) {
-
-                    console.log(data.isSuccess); //Here
-                    if (data.isSuccess == true) {
-                        $("#validation-summary").html("");
-                        $("#validation-summary").hide();
-                        window.location.href = data.redirectUrl;
-                        window.location.reload();
-                    }
-                    else {
-                        //$("#validation-summary").show();
-                        $("#validation-summary").text(data.data).show().delay(5000).fadeOut(2000);
-                    }
-                });
-
-                //$('.datefield').datepicker({
-                //    dateFormat: 'dd-mm-yy',
-                //    autoclose: true,
-                //    minDate: new Date()
-                //}).on('change', function (e) {
-
-                //});
-
-            }).on('hidden.bs.modal', function (e) {
-                $("#modal-add-edit-jobdetails").find(".modal-content").html("");
-                $(this).removeData('bs.modal');
-            });
-
-
-
-
-
-            $("#modal-delete-jobdetails").on('loaded.bs.modal', function (e) {
-
-                formDeleteJobTitle = new Global.FormHelper($('#frm-delete-jobdetails'), { updateTargetId: "validation-summary" }, function (data) {
-                    if (data.isSuccess) {
-                        // alert(data.data);
-                        window.location.reload();
-                    }
-                    else {
-                        alert(data.data);
-                    }
-                });
-            }).on('hidden.bs.modal', function (e) {
-                $("#modal-delete-jobdetails").find(".modal-content").html("");
-                $(this).removeData('bs.modal');
-            });
-
+        function initGridControlsWithEvents() {
+            if ($('.switchBox').data('bootstrapSwitch')) {
+                $('.switchBox').off('switchChange.bootstrapSwitch');
+                $('.switchBox').bootstrapSwitch('destroy');
+            }
 
         }
 
 
         $this.init = function () {
-            initializeGrid();
             initializeModalWithForm();
+            initializeGrid();
+            
+
         };
     }
-
-
     $(function () {
         var self = new JobDetailsList();
         self.init();
     });
-
-
-
 }(jQuery));
+
