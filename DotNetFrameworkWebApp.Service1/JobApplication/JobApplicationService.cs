@@ -51,11 +51,11 @@ namespace DotNetFrameworkWebApp.Service
         {
             return repoJob.Search(query, out totalItems);
         }
-        public bool GetUser(int id, string email)
-        {
-            return repoJob.Query().Filter(x => x.Job_Code == id && x.Title == email).Get().Any();
+        //public bool GetUser(int id, string email)
+        //{
+        //    return repoJob.Query().Filter(x => x.id == id && x.Title == email).Get().Any();
 
-        }
+        //}
 
         //public JobApplication FindById(int job_Code)
         //{

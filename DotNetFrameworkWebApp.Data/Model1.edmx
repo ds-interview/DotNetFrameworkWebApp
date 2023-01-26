@@ -7,9 +7,10 @@
     <Schema Namespace="Candidate3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="JobApplication">
           <Key>
-            <PropertyRef Name="Job_Code" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Job_Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Job_Code" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Minimum_Qualification" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Sort_Description" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -79,9 +80,10 @@ warning 6002: The table/view 'Candidate3.dbo.Login' does not have a primary key 
         </EntityContainer>
         <EntityType Name="JobApplication">
           <Key>
-            <PropertyRef Name="Job_Code" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Job_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Job_Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Minimum_Qualification" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Sort_Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -121,6 +123,7 @@ warning 6002: The table/view 'Candidate3.dbo.Login' does not have a primary key 
                 <ScalarProperty Name="Minimum_Qualification" ColumnName="Minimum_Qualification" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Job_Code" ColumnName="Job_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

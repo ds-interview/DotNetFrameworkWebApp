@@ -14,7 +14,8 @@ namespace DotNetFrameworkWebApp.Data
     
     public partial class JobApplication
     {
-        public int Job_Code { get; set; }
+        public int Id { get; set; }
+        public string Job_Code { get; set; }
         public string Title { get; set; }
         public string Minimum_Qualification { get; set; }
         public string Sort_Description { get; set; }

@@ -1,4 +1,5 @@
-﻿using DotNetFrameworkWebApp.Data;
+﻿using DotNetFrameworkWebApp.Core;
+using DotNetFrameworkWebApp.Data;
 using DotNetFrameworkWebApp.Model;
 using DotNetFrameworkWebApp.Service;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace DotNetFrameworkWebApp.Controllers
 {
@@ -29,11 +31,12 @@ namespace DotNetFrameworkWebApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var Password = PasswordHelper.base64Encode(userRegister.Password);
                     User users = new User();
                     users.Name = userRegister.Name;
                     users.Email = userRegister.Email;
                     users.UserName = userRegister.UserName;
-                    users.Password = userRegister.Password;
+                    users.Password = Password;
 
                     var data=register.SaveRegister(users);
                     if (data != null)

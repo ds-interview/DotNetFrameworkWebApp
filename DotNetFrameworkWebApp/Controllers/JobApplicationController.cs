@@ -53,14 +53,15 @@ namespace DotNetFrameworkWebApp.Controllers
             if (!string.IsNullOrEmpty(dataTable.sSearch))
             {
                 string sSearch = dataTable.sSearch.ToLower();
-                query.AddFilter(q => q.Title.Contains(sSearch));
+                query.AddFilter(q => q.Title.Contains(sSearch) || q.Sort_Description.Contains(sSearch) || q.Minimum_Qualification.Contains(sSearch));
             }
+
             // This Methods for sorting in dataTable
             var sortColumnIndex = Convert.ToInt32(Request["iSortCol_0"]);
             var sortDirection = Request["sSortDir_0"];
             switch (sortColumnIndex)
             {
-                case 2:
+                case 3:
                     query.AddSortCriteria(new ExpressionSortCriteria<JobApplication, string>(q => q.Title, sortDirection == "asc" ? SortDirection.Ascending : SortDirection.Descending));
                     break;
                 default:
@@ -81,8 +82,9 @@ namespace DotNetFrameworkWebApp.Controllers
             {
                 table.Add(new DataTableRow("rowId" + count.ToString(), "dtrowclass")
                 {
-                    job.Job_Code .ToString(), //0
+                    job.Id .ToString(),
                     count.ToString(),//1
+                    job.Job_Code .ToString(), //0
                     job.Title,//2
                     job.Minimum_Qualification,//3
                     job.Sort_Description,//4
@@ -101,6 +103,7 @@ namespace DotNetFrameworkWebApp.Controllers
             {
 
                 JobApplication jobApplication = _jobService.GetJob(id.Value);
+                model.Id= jobApplication.Id;
                 model.Job_Code = jobApplication.Job_Code;
                 model.Title = jobApplication.Title;
                 model.Minimum_Qualification = jobApplication.Minimum_Qualification;
@@ -117,18 +120,19 @@ namespace DotNetFrameworkWebApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    bool isExist = model.Job_Code == 0 ? false : true;
+                    bool isExist = model.Id == 0 ? false : true;
                     JobApplication jobApplication = new JobApplication();
-                    jobApplication = isExist ? _jobService.GetJob(model.Job_Code) : new JobApplication();
-                    jobApplication.Job_Code = isExist ? model.Job_Code : 0;
+                    jobApplication = isExist ? _jobService.GetJob(model.Id) : new JobApplication();
+                    jobApplication.Id = isExist ? model.Id : 0;
+                    jobApplication.Job_Code = model.Job_Code;
                     jobApplication.Title = model.Title;
                     jobApplication.Minimum_Qualification = model.Minimum_Qualification;
                     jobApplication.Sort_Description = model.Sort_Description;
                     jobApplication.Application_Last_Date = model.Application_Last_Date;
                     var data = isExist ? _jobService.UpdateJob(jobApplication) : _jobService.SaveJob(jobApplication);
+                    ShowSuccessMessage("Success", String.Format("{0} is successfully {1}", jobApplication.Title, isExist ? "updated" : "added"), false);
                 }
                 return RedirectToAction("Index");
-                // return NewtonSoftJsonResult(new RequestOutcome<dynamic> {IsSuccess=true, RedirectUrl = @Url.Action("Index", "JobApplication") });
             }
             catch (Exception ex)
             {

@@ -26,17 +26,23 @@
                     {
                         "targets": [3],
                         "visible": true,
-                        "sortable": false,
-                        "searchable": false
+                        "sortable": true,
+                        "searchable": true
                     },
                     {
                         "targets": [4],
                         "visible": true,
-                        "sortable": false,
-                        "searchable": false
+                        "sortable": true,
+                        "searchable": true
                     },
                     {
                         "targets": [5],
+                        "visible": true,
+                        "sortable": true,
+                        "searchable": true
+                    },
+                    {
+                        "targets": [6],
                         "visible": true,
                         "sortable": false,
                         "searchable": false
@@ -44,7 +50,7 @@
 
                     {
 
-                        "targets": 6,
+                        "targets": 7,
                         "searchable": false,
                         "sortable": false,
                         "data": "0",

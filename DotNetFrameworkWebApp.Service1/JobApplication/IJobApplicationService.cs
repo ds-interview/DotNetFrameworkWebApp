@@ -13,7 +13,7 @@ namespace DotNetFrameworkWebApp.Service
         void DeleteJob(int id);
         void DeleteJob(JobApplication jobApplication);
         PagedListResult<JobApplication> GetJob(SearchQuery<JobApplication> query, out int totalItems);
-        bool GetUser(int id,string email);
+      //  bool GetUser(int id,string email);
         IEnumerable<JobApplication> GetJobList();
     }
 }

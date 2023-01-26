@@ -2,7 +2,7 @@
 @using DotNetFrameworkWebApp.Models
 @*<div id="DvUpdate">*@
 
-
+@Html.Partial("_MessageNotification")
 <div id="frm-add-ed3it-jobapplication">
     @using (Html.BeginForm("AddEditJobApplication", "JobApplication", null, FormMethod.Post, new { enctype = "multi part/form-data", @class = "form-horizontal", id = "formRegisterprovider", @autocomplete = "off" }))
     {
@@ -41,7 +41,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Application_Last_Date, new { @class = "col-lg-4 col-sm-3 control-label" })
                 <div class="col-lg-8 col-sm-9">
-                    @Html.TextBoxFor(model => model.Application_Last_Date, new { @class = "form-control ", maxlength = "100",type="date" })
+                    @Html.TextBoxFor(model => model.Application_Last_Date, new { @class = "form-control ", maxlength = "100", type = "date" })
                     @Html.ValidationMessageFor(model => model.Application_Last_Date, null, new { @class = "error" })
                 </div>
             </div>

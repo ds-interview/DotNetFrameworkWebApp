@@ -26,17 +26,24 @@ namespace DotNetFrameworkWebApp.Controllers
         [HttpPost]
         public ActionResult Index(LoginViewModel login)
         {
-            var Password = PasswordHelper.base64Encode(login.Password);
-            bool UserId = _register.GetUser(login.UserName, Password);
-            if (UserId !=null)
+            if (ModelState.IsValid)
             {
-                Session["UserID"] = UserId;
-                Session["LoginCheck"] = "Login";
-                return RedirectToAction("Index", "JobApplication");
+                var Password = PasswordHelper.base64Encode(login.Password);
+                bool UserId = _register.GetUser(login.UserName, Password);
+                if (UserId)
+                {
+                    Session["UserID"] = UserId;
+                    Session["LoginCheck"] = "Login";
+                    ShowSuccessMessage("Success", "Successfully login", false);
+                    return RedirectToAction("Index", "JobApplication");
+                }
+                else
+                {
+                    ShowErrorMessage("Error", "Incorect User Name or Password", true);
+                }
             }
             else
             {
-                TempData["msg"] = "<script>alert('Not  Logged In ')</script>";
             }
             return View();
         }

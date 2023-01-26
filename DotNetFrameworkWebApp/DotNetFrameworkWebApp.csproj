@@ -451,6 +451,7 @@
     <Content Include="Views\Shared\_ModalFooter.cshtml" />
     <Content Include="Views\Shared\_ModalHeader.cshtml" />
     <Content Include="Views\Shared\_ModelDetails.cshtml" />
+    <Content Include="Views\Shared\_MessageNotification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
