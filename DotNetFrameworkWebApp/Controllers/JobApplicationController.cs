@@ -82,13 +82,13 @@ namespace DotNetFrameworkWebApp.Controllers
             {
                 table.Add(new DataTableRow("rowId" + count.ToString(), "dtrowclass")
                 {
-                    job.Id .ToString(),
+                    job.Id .ToString(),//0
                     count.ToString(),//1
-                    job.Job_Code .ToString(), //0
-                    job.Title,//2
-                    job.Minimum_Qualification,//3
-                    job.Sort_Description,//4
-                    job.Application_Last_Date.ToString(),//5
+                    job.Job_Code .ToString(), //2
+                    job.Title,//3
+                    job.Minimum_Qualification,//4
+                    job.Sort_Description,//5
+                    job.Application_Last_Date.ToString(),//6
                     
                 });
                 count++;
