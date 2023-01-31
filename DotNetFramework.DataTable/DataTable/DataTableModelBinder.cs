@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.ModelBinding;
 using System.Web.Mvc;
 
-namespace DotNetFramework.DataTable.DataTable
+namespace DotNetFramewok.DataTable.DataTables
 {
+    /// <summary>
+    /// This type is the ModelBinder for jquery.datatables
+    /// Add this type to MVC modelbinders to bind jquery.datatables
+    /// requests to <see cref="DataTable"/>
+    /// </summary>
     public class DataTableModelBinder : IModelBinder
     {
         #region IModelBinder Members

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using System.Web.Mvc;
 
-namespace DotNetFramework.DataTable.DataTable
+namespace DotNetFramewok.DataTable.DataTables
 {
+    /// <summary>
+    /// A common interface for datatables results
+    /// </summary>
     public interface IDataTableResult<T>
     {
         /// <summary>

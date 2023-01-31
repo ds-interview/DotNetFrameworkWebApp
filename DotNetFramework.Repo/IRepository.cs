@@ -1,4 +1,4 @@
-﻿using DotNetFramework.DataTable.Search;
+﻿using DotNetFramewok.DataTable.Search;
 using System;
 using System.Collections.Generic;
 using System.Linq;

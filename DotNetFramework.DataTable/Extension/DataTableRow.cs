@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace DotNetFramework.DataTable.Extension
+namespace DotNetFramewok.DataTable.Extension
 {
     public class DataTableRow : List<string>
     {
@@ -36,3 +32,4 @@ namespace DotNetFramework.DataTable.Extension
         }
     }
 }
+

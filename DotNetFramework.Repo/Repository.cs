@@ -1,5 +1,5 @@
-﻿using DotNetFramework.Data;
-using DotNetFramework.DataTable.Search;
+﻿using DotNetFramewok.DataTable.Search;
+using DotNetFramework.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,11 +7,10 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNetFramework.Repo
 {
-     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
       
           internal JobrecruitmentEntities Context;

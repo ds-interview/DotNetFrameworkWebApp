@@ -1,40 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DotNetFramework.DataTable.Sort
+namespace DotNetFramewok.DataTable.Sort
 {
-    public class FieldSortCriteria<T> : ISortCriteria<T> where T : class
+    public enum SortDirection
+    {
+        Ascending = 0,
+        Descending = 1
+    }
+
+    //-----------------------------------------------------------------------
+    /// <summary>
+    /// Common interface to the sort implementations
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface ISortCriteria<T>
     {
         //-----------------------------------------------------------------------
-        public String Name { get; set; }
+        SortDirection Direction { get; set; }
 
         //-----------------------------------------------------------------------
-        public SortDirection Direction { get; set; }
-
-        //-----------------------------------------------------------------------
-        public FieldSortCriteria()
-        {
-            this.Direction = SortDirection.Ascending;
-        }
-
-        //-----------------------------------------------------------------------
-        public FieldSortCriteria(String name, SortDirection direction)
-            : base()
-        {
-            Name = name;
-            Direction = direction;
-        }
-
-        //-----------------------------------------------------------------------
-        public IOrderedQueryable<T> ApplyOrdering(IQueryable<T> qry, Boolean useThenBy)
-        {
-            IOrderedQueryable<T> result = null;
-            var descending = this.Direction == SortDirection.Descending;
-            result = !useThenBy ? qry.OrderBy(Name, descending) : qry.ThenBy(Name, descending);
-            return result;
-        }
+        IOrderedQueryable<T> ApplyOrdering(IQueryable<T> query, Boolean useThenBy);
     }
 }
+

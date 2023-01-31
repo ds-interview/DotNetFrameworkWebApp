@@ -1,0 +1,14 @@
+﻿@model DotNetFrameworkWebApp.Model.Comman.ModalFooter
+
+
+<div class="modal-footer">
+    <button data-dismiss="modal" id="@Model.CancelButtonID" class="@Model.CancelButtonCss" type="button">@Model.CancelButtonText</button>
+    @if (!Model.OnlyCancelButton)
+    {
+        <button id="@Model.SubmitButtonID" class="@Model.SubmitButtonCss" type="submit">
+            @*<i class=" fa fa-spinner" ></i>*@
+            @Model.SubmitButtonText
+        </button>
+    }
+</div>
+

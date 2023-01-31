@@ -1,0 +1,86 @@
+﻿@using DotNetFrameworkWebApp.Model.Comman
+@using DotNetFrameworkWebApp.Code.Serialization
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+
+    .panel-heading {
+        background-color: #3c8dbc !important;
+    }
+
+
+
+        .panel-heading .panel-title a {
+            color: #ffffff;
+            font-size: 20px;
+            font-family: serif;
+        }
+</style>
+<div class="box">
+    @Html.Partial("_MessageNotification")
+    <div class="box-body">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="panel-group" id="accordion">
+
+
+                    <div class="btn-group" style="margin-top:20px;">
+                        <a id="addeditPresenterModal" data-toggle="modal" href="@Url.Action("AddEditJobDetails","JobDetails")" data-target="#modal-add-edit-jobdetails" class="btn btn-success">
+                            <i class="fa fa-plus"></i>Add Job
+                        </a>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="box-body table-responsive">
+                            <table id="grid-jobdetails-management" class="table table-bordered table-striped table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th width="2%">#</th>
+                                        <th>Title</th>
+                                        <th>Minimum Qualification </th>
+                                        <th>Job Description</th>
+                                        <th>ApplicationLast Date</th>
+                                        <th style=" width: 150px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot></tfoot>
+                            </table>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@Html.Partial("_Modal", new Modal { ID = "modal-add-edit-jobdetails", AreaLabeledId = "modal-add-edit-jobdetails-label", Size = ModalSize.Large })
+@Html.Partial("_Modal", new Modal { ID = "modal-delete-jobdetails", AreaLabeledId = "modal-delete-jobdetails-label", Size = ModalSize.Large })
+@section scripts
+{
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>*@
+    <script src="~/Scripts/jquery.validate.js"></script>
+
+    <script src="~/Scripts/global.js"></script>
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.js"></script>
+    <script src="~/Scripts/JobDetails/JobDetails.js"></script>
+
+}
+
+
+
+
+

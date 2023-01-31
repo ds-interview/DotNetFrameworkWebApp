@@ -1,14 +1,12 @@
-﻿using DotNetFramework.DataTable.DataTable;
+﻿using DotNetFramewok.DataTable.DataTables;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DotNetFramework.DataTable.Extension
+namespace DotNetFramewok.DataTable.Extension
 {
     public class DataTableResultExt : ActionResult, IDataTableResult<List<DataTableRow>>
     {
@@ -30,10 +28,10 @@ namespace DotNetFramework.DataTable.Extension
         public List<DataTableRow> aaData { get; set; }
 
 
-        //public DataTableResultExt(DotNetFramework.DataTable.DataTable dataTable, int iTotalRecords = 0, int iTotalDisplayRecords = 0, List<DataTableRow> aaData = null)
-        //    : this(dataTable.sEcho, iTotalRecords, iTotalDisplayRecords, aaData)
-        //{
-        //}
+        public DataTableResultExt(DotNetFramewok.DataTable.DataTables.DataTable dataTable, int iTotalRecords = 0, int iTotalDisplayRecords = 0, List<DataTableRow> aaData = null)
+            : this(dataTable.sEcho, iTotalRecords, iTotalDisplayRecords, aaData)
+        {
+        }
 
         public DataTableResultExt(string sEcho = "", int iTotalRecords = 0, int iTotalDisplayRecords = 0, List<DataTableRow> aaData = null)
         {

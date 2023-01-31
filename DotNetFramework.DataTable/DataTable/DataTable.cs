@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace DotNetFramework.DataTable.DataTable
+namespace DotNetFramewok.DataTable.DataTables
 {
+    /// <summary>
+    /// This class represents a jquery.dataTable request
+    /// object. This class can be used as parameter
+    /// in a Controllers Actions method. The Jquery.datatable
+    /// parameter are bound automatically to this object.
+    /// </summary>
     public class DataTable
     {
 

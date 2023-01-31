@@ -19,5 +19,15 @@ namespace DotNetFramework.Core
                 dictionaryContainer.Add(key, value);
             }
         }
+
+        public static string ToPascalCase(this string s)
+        {
+            var words = s.Split(new[] { '-', '_' }, StringSplitOptions.RemoveEmptyEntries)
+                         .Select(word => word.Substring(0, 1).ToUpper() +
+                                         word.Substring(1).ToLower());
+
+            var result = String.Concat(words)?.Trim();
+            return result;
+        }
     }
 }

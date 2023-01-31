@@ -50,13 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetFramework.DataTable\DotNetFramework.DataTable.csproj">
-      <Project>{622ddfd4-1611-48ff-a0e5-0ca5bbab5955}</Project>
+      <Project>{622DDFD4-1611-48FF-A0E5-0CA5BBAB5955}</Project>
       <Name>DotNetFramework.DataTable</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNetFramework.Data\DotNetFramework.Data.csproj">
-      <Project>{FF10AEE3-536B-4D12-8445-3A3F2F39B447}</Project>
+      <Project>{ff10aee3-536b-4d12-8445-3a3f2f39b447}</Project>
       <Name>DotNetFramework.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

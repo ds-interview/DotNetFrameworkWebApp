@@ -25,6 +25,21 @@ namespace DotNetFrameworkWebApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/globalJs").Include("~/Scripts/global.js"));
+            #region DataTables
+            bundles.Add(new ScriptBundle("~/bundles/DataTables").Include(
+               "~/Scripts/jquery.dataTables.js",
+               "~/Scripts/dataTables.bootstrap4.js"
+               ));
+            #endregion
+            #region [DATA TABLE]
+
+            bundles.Add(new StyleBundle("~/bundles/DataTablesCss").Include(
+             "~/Content/css/dataTables.bootstrap4.min.css"
+             ));
+
+            #endregion
         }
     }
 }

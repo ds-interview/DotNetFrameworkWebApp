@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplyJobService\ApplyJobService.cs" />
-    <Compile Include="ApplyJobService\IApplyJobService.cs" />
+    <Compile Include="ApplyJob\IJobDetailService.cs" />
+    <Compile Include="ApplyJob\JobDetailService.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="UserRegistrationService\IRegistrationServices.cs" />
+    <Compile Include="UserRegistrationService\IUserRegistration1.cs" />
+    <Compile Include="UserRegistrationService\UserRegistration1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserRegistrationService\RegistrationServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetFramework.DataTable\DotNetFramework.DataTable.csproj">
@@ -62,6 +62,10 @@
       <Name>DotNetFramework.Repo</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

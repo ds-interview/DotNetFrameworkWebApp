@@ -1,12 +1,9 @@
 ﻿using DotNetFramework.DataTable.Sort;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DotNetFramework.DataTable.Search
+namespace DotNetFramewok.DataTable.Search
 {
     public class SearchQuery<TEntity>
     {
@@ -77,3 +74,4 @@ namespace DotNetFramework.DataTable.Search
         }
     }
 }
+

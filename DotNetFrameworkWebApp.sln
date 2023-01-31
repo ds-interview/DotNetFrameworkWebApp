@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetFramework.Data", "Dot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetFramework.Repo", "DotNetFramework.Repo\DotNetFramework.Repo.csproj", "{4A55FD23-8383-4229-88E6-0A2F4147BD7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetFramework.DTO", "DotNetFramework.DTO\DotNetFramework.DTO.csproj", "{044FAA08-B80A-4FA6-9408-EAD49AA47806}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetFramework.DataTable", "DotNetFramework.DataTable\DotNetFramework.DataTable.csproj", "{622DDFD4-1611-48FF-A0E5-0CA5BBAB5955}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetFramework.Service", "DotNetFramework.Service\DotNetFramework.Service.csproj", "{DBF1EFCE-F68C-434A-984E-DB935B7DD817}"
@@ -39,10 +37,6 @@ Global
 		{4A55FD23-8383-4229-88E6-0A2F4147BD7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A55FD23-8383-4229-88E6-0A2F4147BD7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A55FD23-8383-4229-88E6-0A2F4147BD7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{044FAA08-B80A-4FA6-9408-EAD49AA47806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{044FAA08-B80A-4FA6-9408-EAD49AA47806}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{044FAA08-B80A-4FA6-9408-EAD49AA47806}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{044FAA08-B80A-4FA6-9408-EAD49AA47806}.Release|Any CPU.Build.0 = Release|Any CPU
 		{622DDFD4-1611-48FF-A0E5-0CA5BBAB5955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{622DDFD4-1611-48FF-A0E5-0CA5BBAB5955}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{622DDFD4-1611-48FF-A0E5-0CA5BBAB5955}.Release|Any CPU.ActiveCfg = Release|Any CPU
